@@ -4,8 +4,8 @@ import "./TaskCard.css";
 interface TaskCardProps {
   title: string;
   dueDate?: string;
-  completedOn?: string;
-  name: string;
+  completedAtDate?: string;
+  assigneeName: string;
 }
 
 const TaskCard: React.FC<TaskCardProps> = (props) => {
@@ -14,8 +14,8 @@ const TaskCard: React.FC<TaskCardProps> = (props) => {
     <div className="TaskItem border-2">
       <h2 className="text-xl font-bold">Assignee : {props.title}</h2>
       {props.dueDate && <p>DueDate : {props.dueDate}</p>}
-      {props.completedOn && <p>Completed on : {props.completedOn}</p>}
-      <p>Assignee: {props.name}</p>
+      {props.completedAtDate && <p>Completed on : {props.completedAtDate}</p>}
+      <p>Assignee: {props.assigneeName}</p>
     </div>
   );
 };
