@@ -1,6 +1,14 @@
+import React from "react";
 import "./TaskCard.css";
 
-const TaskCard = (props) => {
+interface TaskCardProps {
+  title: string;
+  dueDate?: string;
+  completedOn?: string;
+  name: string;
+}
+
+const TaskCard: React.FC<TaskCardProps> = (props) => {
   console.log(props);
   return (
     <div className="TaskItem border-2">
