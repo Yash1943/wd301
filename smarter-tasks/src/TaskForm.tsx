@@ -53,7 +53,7 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
             className="border-2 p-2 m-3 rounded"
           />
           <input
-            type="text"
+            type="date"
             id="todoDueDate"
             name="dueDate"
             value={this.state.dueDate}
