@@ -30,7 +30,8 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
       };
       this.props.addTask(newTask);
       this.setState({ title: "", dueDate: "", description: "" });
-    } else {
+    }
+    if (!title || !dueDate) {
       alert("Title and Due Date are required.");
     }
   };
@@ -51,6 +52,7 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
             onChange={this.handleChange}
             placeholder="Title"
             className="border-2 p-2 m-3 rounded"
+            required
           />
           <input
             type="date"
@@ -60,6 +62,7 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
             onChange={this.handleChange}
             placeholder="Due Date"
             className="border-2 p-2 m-3 rounded"
+            required
           />
           <input
             type="text"
@@ -70,11 +73,8 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
             placeholder="Description"
             className="border-2 p-2 m-3 rounded"
           />
-          <button
-            id="addTaskButton"
-            className="bg-green-600 p-2 m-3 rounded text-white"
-            type="submit">
-            Add item
+          <button type="submit" id="addTaskButton" className="mt-2">
+            Add Task
           </button>
         </div>
       </form>
