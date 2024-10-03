@@ -70,7 +70,10 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
             placeholder="Description"
             className="border-2 p-2 m-3 rounded"
           />
-          <button className="bg-green-600 p-2 m-3 rounded text-white" type="submit">
+          <button
+            id="addTaskButton"
+            className="bg-green-600 p-2 m-3 rounded text-white"
+            type="submit">
             Add item
           </button>
         </div>
