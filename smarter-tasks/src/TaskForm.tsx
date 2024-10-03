@@ -21,13 +21,18 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
   }
   addTask: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    const newTask = {
-      title: this.state.title,
-      dueDate: this.state.dueDate,
-      description: this.state.description,
-    };
-    this.props.addTask(newTask);
-    this.setState({ title: "", dueDate: "", description: "" });
+    const { title, dueDate, description } = this.state;
+    if (title && dueDate) {
+      const newTask: TaskItem = {
+        title,
+        dueDate,
+        description,
+      };
+      this.props.addTask(newTask);
+      this.setState({ title: "", dueDate: "", description: "" });
+    } else {
+      alert("Title and Due Date are required.");
+    }
   };
   handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const { name, value } = event.target;
@@ -40,6 +45,7 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
         <div className="flex flex-col m-2">
           <input
             type="text"
+            id="todoTitle"
             name="title"
             value={this.state.title}
             onChange={this.handleChange}
@@ -48,6 +54,7 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
           />
           <input
             type="text"
+            id="todoDueDate"
             name="dueDate"
             value={this.state.dueDate}
             onChange={this.handleChange}
@@ -56,6 +63,7 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
           />
           <input
             type="text"
+            id="todoDescription"
             name="description"
             value={this.state.description}
             onChange={this.handleChange}
