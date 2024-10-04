@@ -8,7 +8,9 @@ interface Props {
 class TaskList extends React.Component<Props> {
   render() {
     return this.props.tasks.map((task, idx) => (
-      <Task key={idx} title={task.title} dueDate={task.dueDate} description={task.description} />
+      <div key={idx} className="TaskItem">
+        <Task key={idx} title={task.title} dueDate={task.dueDate} description={task.description} />
+      </div>
     ));
   }
 }
