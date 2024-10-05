@@ -9,12 +9,12 @@ class Task extends React.Component<TaskProps> {
   render() {
     return (
       <div className="TaskItem shadow-md border border-slate-100">
-        <h2 className="text-base font-bold my-1">{this.props.title}</h2>
+        <h2>{this.props.title}</h2>
         {this.props.dueDate && (
-          <p className="text-sm text-slate-500">Due Date: {this.props.dueDate}</p>
+          <p>Due Date: {this.props.dueDate}</p>
         )}
         {this.props.description && (
-          <p className="text-sm text-slate-500">Description: {this.props.description}</p>
+          <p>Description: {this.props.description}</p>
         )}
       </div>
     );
