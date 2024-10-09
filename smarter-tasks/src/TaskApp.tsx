@@ -52,7 +52,7 @@ const TaskApp = () => {
     });
   };
 
-  const deleteTask = (index: number) => {
+  const removeTask = (index: number) => {
     setTaskAppState((state) => {
       const newTasks = [...state.tasks];
       newTasks.splice(index, 1);
@@ -108,7 +108,7 @@ const TaskApp = () => {
         <div className="border border-slate-200 rounded-xl p-4">
           <h1 className="text-slate-500 text-xl font-bold text-center mb-2">Pending</h1>
           <TaskForm addTask={addTask} />
-          <TaskList tasks={taskAppState.tasks} deleteTask={deleteTask} />
+          <TaskList tasks={taskAppState.tasks} deleteTask={removeTask} />
         </div>
       </div>
     </div>

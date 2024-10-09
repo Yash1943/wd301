@@ -3,7 +3,7 @@ import { TaskItem } from "./types";
 
 interface Props {
   tasks: TaskItem[];
-  deleteTask: (id: number) => void;
+  removeTask: (id: number) => void;
 }
 // class TaskList extends React.Component<Props> {
 //   render() {
@@ -23,7 +23,7 @@ const TaskList = (props: Props) => {
       title={task.title}
       dueDate={task.dueDate}
       description={task.description}
-      onDelete={props.deleteTask}
+      removeTask={props.removeTask}
     />
   ));
   return <>{list}</>;

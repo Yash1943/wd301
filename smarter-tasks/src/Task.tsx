@@ -1,33 +1,32 @@
 import "./TaskCard.css";
 import { TaskItem } from "./types";
-// ...
 
-interface TaskProps extends TaskItem {
-  onDelete: (id: number) => void;
+interface TaskProps {
   id: number;
+  // item: TaskItem;
+  title: string;
+  dueDate: string;
+  description: string;
+  removeTask: (id: number) => void;
 }
-
-// class Task extends React.Component<TaskProps> {
-//   render() {
-//     return (
-//       <div className="TaskItem shadow-md border border-slate-100">
-//         <h2>{this.props.title}</h2>
-//         {this.props.dueDate && <p>Due Date: {this.props.dueDate}</p>}
-//         {this.props.description && <p>Description: {this.props.description}</p>}
-//       </div>
-//     );
-//   }
-// }
-
 const Task = (props: TaskProps) => {
   return (
     <div className="TaskItem shadow-md border border-slate-100">
-      <h2>{props.title}</h2>
-      {props.dueDate && <p>Due Date: {props.dueDate}</p>}
-      {props.description && <p>Description: {props.description}</p>}
-      <button className="deleteTaskButton" onClick={() => props.onDelete(props.id)}>
-        Delete
-      </button>
+      <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
+        <div>
+          <a href={`/tasks/${props.id || ""}`}>
+            <h2 className="text-base font-bold my-1">{props.title}</h2>
+          </a>
+          <p className="text-sm text-slate-500">{props.dueDate}</p>
+          <p className="text-sm text-slate-500">Description: {props.description}</p>
+        </div>
+
+        <button
+          className="deleteTaskButton cursor-pointer flex items-center justify-center h-4 w-4 rounded-full my-5 mr-5"
+          onClick={() => props.removeTask(props.id)}>
+          X
+        </button>
+      </div>
     </div>
   );
 };
