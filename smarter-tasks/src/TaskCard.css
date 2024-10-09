@@ -4,3 +4,11 @@
   padding: 10px 20px;
   margin-top: 12px;
 }
+.deleteTaskButton{
+  background-color: #FF0000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-left: 10px;
+}

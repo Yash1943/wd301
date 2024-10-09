@@ -2,7 +2,10 @@ import "./TaskCard.css";
 import { TaskItem } from "./types";
 // ...
 
-interface TaskProps extends TaskItem {}
+interface TaskProps extends TaskItem {
+  onDelete: (id: number) => void;
+  id: number;
+}
 
 // class Task extends React.Component<TaskProps> {
 //   render() {
@@ -22,6 +25,9 @@ const Task = (props: TaskProps) => {
       <h2>{props.title}</h2>
       {props.dueDate && <p>Due Date: {props.dueDate}</p>}
       {props.description && <p>Description: {props.description}</p>}
+      <button className="deleteTaskButton" onClick={() => props.onDelete(props.id)}>
+        Delete
+      </button>
     </div>
   );
 };

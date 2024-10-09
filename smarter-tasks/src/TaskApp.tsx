@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { TaskItem } from "./types";
 import TaskForm from "./TaskForm";
 import TaskList from "./TaskList";
+import { useLocalStorage } from "./hooks/useLocalStorage";
+
 interface TaskAppState {
   tasks: TaskItem[];
 }
@@ -41,7 +43,7 @@ interface TaskAppState {
 // }
 
 const TaskApp = () => {
-  const [taskAppState, setTaskAppState] = React.useState<TaskAppState>({ tasks: [] });
+  const [taskAppState, setTaskAppState] = useLocalStorage<TaskAppState>("tasks", { tasks: [] });
   const addTask = (task: TaskItem) => {
     setTaskAppState((state) => {
       return {
@@ -49,6 +51,52 @@ const TaskApp = () => {
       };
     });
   };
+
+  const deleteTask = (index: number) => {
+    setTaskAppState((state) => {
+      const newTasks = [...state.tasks];
+      newTasks.splice(index, 1);
+      return {
+        tasks: newTasks,
+      };
+    });
+  };
+
+  //not require for cleanup function
+  useEffect(() => {
+    // document.title = `You have ${taskAppState.tasks.length} items`;
+    const id = setTimeout(() => {
+      console.log(`You have ${taskAppState.tasks.length} items`);
+    }, 5000);
+
+    return () => {
+      console.log("clear or cencel the exisiting network request");
+      clearTimeout(id);
+    };
+  }, [taskAppState.tasks]);
+  //require for cleanup function
+  // eg. when user name enter in the form then type a req to the a then after a type r then req to the ar and cleanup the previous req
+  useEffect(() => {
+    //subscribe or connect the service here
+    // ...
+
+    return () => {
+      // do any clean up code here
+      // unsubscribe or disconnect the service here
+    };
+  });
+
+  //comman example of useEffect
+  // React.useEffect(() => {
+  //   // This is correct usage
+  //   const saveTasks = async () => {
+  //     const token = await saveTasksToBackend(taskAppState.tasks);
+  //   };
+  //   saveTasks();
+  //   return () => {
+  //     cancelAPI(token);
+  //   };
+  // }, [taskAppState.tasks]);
   return (
     <div className="container py-10 max-w-7xl mx-auto">
       <h1 className="text-3xl mb-2 font-bold text-slate-700">Smarter Tasks</h1>
@@ -60,7 +108,7 @@ const TaskApp = () => {
         <div className="border border-slate-200 rounded-xl p-4">
           <h1 className="text-slate-500 text-xl font-bold text-center mb-2">Pending</h1>
           <TaskForm addTask={addTask} />
-          <TaskList tasks={taskAppState.tasks} />
+          <TaskList tasks={taskAppState.tasks} deleteTask={deleteTask} />
         </div>
       </div>
     </div>
