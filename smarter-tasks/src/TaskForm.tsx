@@ -1,5 +1,6 @@
 import React from "react";
 import { TaskItem } from "./types";
+import { v4 as uuidv4 } from "uuid";
 
 interface TaskFormProps {
   addTask: (task: TaskItem) => void;
@@ -118,6 +119,7 @@ const TaskForm = (props: TaskFormProps) => {
     const { title, dueDate, description } = FormState;
     if (title && dueDate) {
       const newTask: TaskItem = {
+        id: uuidv4(),
         title,
         dueDate,
         description,

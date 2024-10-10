@@ -16,16 +16,23 @@ const TaskDetailsPage: React.FC = () => {
   const [taskAppState] = useLocalStorage<TaskAppState>("tasks", {
     tasks: [],
   });
-
+  console.log(taskAppState.tasks);
   const task = taskAppState.tasks.find((task) => task.id === id);
+  if (!task) {
+    return (
+      <div className="bg-white shadow-md rounded-md p-4 m-8">
+        <h3 className="text-lg font-medium">Task not found</h3>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white shadow-md rounded-md p-4 m-8">
       <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-medium">{task?.title}</h3>
+        <h3 className="text-lg font-medium">{task.title}</h3>
       </div>
-      <p className="text-gray-600">{task?.description}</p>
-      <p className="text-gray-600">{task?.dueDate}</p>
+      <p className="text-gray-600">{task.description}</p>
+      <p className="text-gray-600">{task.dueDate}</p>
     </div>
   );
 };
